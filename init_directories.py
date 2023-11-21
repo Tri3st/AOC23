@@ -92,6 +92,18 @@ def read_data(filename="", lines=0) -> list:
     return data
 """
 
+main_file = """# main for Advent of Code 2023
+from day1.day1 import part1, part2
+
+part1()
+
+\"\"\"Happy coding !!\"\"\"
+"""
+
+f = open("C:/Users/MartinvanDiest/AOC23/main.py", "x")
+f.write(main_file)
+f.close()
+
 for day_nr in range(1, 26):
     dir_name = f"day{day_nr}"
     parent_dir = "C:/Users/MartinvanDiest/AOC23/"
