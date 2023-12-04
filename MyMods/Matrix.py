@@ -12,8 +12,14 @@ class Matrix:
         self.dimj = dimj
         self.dimi = dimi
         self.grid = [[0 for i in range(dimi)] for j in range(dimj)]
-        self.lowpoints = []
-        self.risklevel = 0
+
+    def add_lines(self, lines):
+        """
+           Adds multiple lines lines to the matrix
+        """
+        for (j, line) in enumerate(lines):
+            for i in range(self.dimi):
+                self.grid[j][i] = line[i]
 
     def __str__(self):
         """

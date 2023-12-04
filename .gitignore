@@ -1,3 +1,20 @@
+<<<<<<< HEAD
 .idea/
 __pychache__
+=======
+### Python template
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# virtualenv
+venv/
+env/
+
+# IDEs
+.idea/
+
+# For me specifically. Dont need to be in the repo. Changes every day anyway.
+>>>>>>> 082e34b (Day 2)
 main.py
