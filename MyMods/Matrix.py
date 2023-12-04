@@ -7,7 +7,6 @@ class Matrix:
     """
        Matrix class. makes a matrix with dimi colums and dimj rows
     """
-
     def __init__(self, dimj, dimi):
         self.dimj = dimj
         self.dimi = dimi
@@ -31,4 +30,3 @@ class Matrix:
                 t += str(self.grid[j][i])
             t += "\n"
         return t
-        
