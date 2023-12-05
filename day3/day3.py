@@ -21,6 +21,7 @@ def part1():
     m1.add_lines(datalines2)
     m1.calc()
     print(m1)
+    print(m1.numbers)
     for number in m1.numbers:
         print(number, m1.check_number(number))
 
