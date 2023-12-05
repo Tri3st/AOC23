@@ -19,7 +19,6 @@ def part1():
     # Your code for part 1 goes here
     m1 = Map(len(datalines2), len(datalines2[0]))
     m1.add_lines(datalines2)
-    m1.calc()
     print(m1)
     print(m1.numbers)
     for number in m1.numbers:
