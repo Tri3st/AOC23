@@ -1,5 +1,6 @@
 from MyMods.ReadDataFile import read_data
-        
+from day5.earth import Earth
+
 datalines = read_data("day5/input_day5.txt")
 
 datalines2 = """seeds: 79 14 55 13
@@ -34,12 +35,19 @@ temperature-to-humidity map:
 
 humidity-to-location map:
 60 56 37
-56 93 4"""
+56 93 4""".split("\n\n")
 
 
 def part1():
     # Your code for part 1 goes here
-    pass
+    seeds = [int(x) for x in datalines2[0].split(": ")[1].split(" ")]
+    earth = Earth(seeds)
+
+    for row in datalines2[1:]:
+        earth.add_operation(row)
+    print(79, earth.test_seed(79))
+
+    print(earth)
 
 
 def part2():

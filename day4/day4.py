@@ -32,5 +32,6 @@ def part2():
     card_numbers = 0
     for i, sc in enumerate(cards):
         if sc.get_score():
+            pass
 
 
