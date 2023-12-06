@@ -40,14 +40,25 @@ humidity-to-location map:
 
 def part1():
     # Your code for part 1 goes here
-    seeds = [int(x) for x in datalines2[0].split(": ")[1].split(" ")]
+    # First the small one :
+
+    # seeds = [int(x) for x in datalines2[0].split(": ")[1].split(" ")]
+    # earth = Earth(seeds)
+    #
+    # for row in datalines2[1:]:
+    #     earth.add_operation(row)
+    #
+    # Then the big one .. :
+    seeds = [int(x) for x in datalines[0].split(": ")[1].split(" ")]
     earth = Earth(seeds)
 
-    for row in datalines2[1:]:
-        earth.add_operation(row)
-    print(79, earth.test_seed(79))
+    print(seeds)
 
-    print(earth)
+    # for row in datalines[1:]:
+    #     earth.add_operation(row)
+    #
+    # earth.test_seeds()
+    # print(earth.solutions)
 
 
 def part2():

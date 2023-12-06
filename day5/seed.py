@@ -24,8 +24,8 @@ class Seed:
         return self.mapping['dest_type']
 
     def map(self, num):
-        if num in self.mapping.keys():
-            return self.mapping[num]
+        if num in self.mapping['mapping'].keys():
+            return self.mapping['mapping'][num]
         else:
             return num
 

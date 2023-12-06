@@ -5,6 +5,7 @@ class Earth:
     def __init__(self, seeds):
         self.TYPE = ["seed", "soil", "fertilizer", "water", "light", "temperature", "humidity", "location"]
         self.seeds = seeds
+        self.solutions = []
         self.earth = []
 
     def get_seed(self, dest_type):
@@ -40,16 +41,21 @@ class Earth:
     def test_seed(self, seed_nr):
         new_seed_nr = seed_nr
         print("Testing seed: ", new_seed_nr)
-        seed = self.get_seed(self.TYPE[1])
-        print("initial seed : ", seed)
+        seed = self.get_seed(self.TYPE[0])
         while True:
             new_seed_nr2 = seed.map(new_seed_nr)
+            print(new_seed_nr, " -> ", seed.get_type(), " -> ", new_seed_nr2)
             new_destination = seed.get_destination()
             seed = self.get_seed(new_destination)
             new_seed_nr = new_seed_nr2
-            if seed.get_type() is self.TYPE[7]:
+            if seed.get_type() is self.TYPE[6]:
+                new_seed_nr = seed.map(new_seed_nr)
                 break
         return new_seed_nr
+
+    def test_seeds(self):
+        for seed in self.seeds:
+            self.solutions.append((seed, self.test_seed(seed)))
 
     def __str__(self):
         result = "EARTH : \n"
