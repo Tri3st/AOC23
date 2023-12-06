@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 .idea/
 __pychache__
 =======
@@ -16,5 +15,4 @@ env/
 .idea/
 
 # For me specifically. Dont need to be in the repo. Changes every day anyway.
->>>>>>> 082e34b (Day 2)
 main.py
