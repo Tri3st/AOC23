@@ -11,8 +11,6 @@ __pycache__/
 venv/
 env/
 
-# IDEs
-.idea/
 
 # For me specifically. Dont need to be in the repo. Changes every day anyway.
 main.py
