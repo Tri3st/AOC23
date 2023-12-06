@@ -1,7 +1,16 @@
 from MyMods.ReadDataFile import read_data
 from day5.earth import Earth
 
-datalines = read_data("day5/input_day5.txt")
+data = None
+
+try:
+    f = open("day5/input_day5.txt", "r")
+    data = f.read()
+    f.close()
+except Exception as e:
+    print("Oops. there was an error : %s" % e.__str__())
+
+datalines = data.split("\n\n")
 
 datalines2 = """seeds: 79 14 55 13
 
@@ -52,13 +61,13 @@ def part1():
     seeds = [int(x) for x in datalines[0].split(": ")[1].split(" ")]
     earth = Earth(seeds)
 
-    print(seeds)
+    for row in datalines[1:]:
+        earth.add_operation(row)
 
-    # for row in datalines[1:]:
-    #     earth.add_operation(row)
-    #
-    # earth.test_seeds()
-    # print(earth.solutions)
+    # print(earth)
+
+    earth.test_seeds()
+    print(earth.solutions)
 
 
 def part2():
