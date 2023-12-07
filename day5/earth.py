@@ -57,6 +57,10 @@ class Earth:
         for seed in self.seeds:
             self.solutions.append((seed, self.test_seed(seed)))
 
+    def get_lowest_solution(self):
+        if self.solutions:
+            return min(self.solutions, key=lambda x: x[1])
+
     def __str__(self):
         result = "EARTH : \n"
         for i in self.earth:

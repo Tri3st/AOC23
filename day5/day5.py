@@ -1,7 +1,8 @@
-from MyMods.ReadDataFile import read_data
 from day5.earth import Earth
 
-datalines = read_data("day5/input_day5.txt")
+f = open("day5/input_day5.txt", "r")
+datalines = f.read().split("\n\n")
+f.close()
 
 datalines2 = """seeds: 79 14 55 13
 
@@ -52,15 +53,32 @@ def part1():
     seeds = [int(x) for x in datalines[0].split(": ")[1].split(" ")]
     earth = Earth(seeds)
 
-    print(seeds)
+    # print(seeds)
 
-    # for row in datalines[1:]:
-    #     earth.add_operation(row)
+    for row in datalines[1:]:
+        earth.add_operation(row)
     #
-    # earth.test_seeds()
-    # print(earth.solutions)
+    earth.test_seeds()
+    print(earth.solutions)
+    print("Lowest : ", earth.get_lowest_solution()[1])
 
 
 def part2():
     # Your code for part 2 goes here
-    pass
+    seeds_temp = [int(x) for x in datalines[0].split(": ")[1].split(" ")]
+    seeds = []
+    for ind, seed_num in enumerate(seeds_temp):
+        if ind % 2 == 0:
+            for i in range(seed_num, seed_num + seeds_temp[ind + 1]):
+                seeds.append(i)
+
+    print(seeds)
+
+    # earth = Earth(seeds)
+
+    # for row in datalines[1:]:
+    #     earth.add_operation(row)
+    # #
+    # earth.test_seeds()
+    # print(earth.solutions)
+    # print("Lowest : ", earth.get_lowest_solution()[1])

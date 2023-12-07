@@ -6,16 +6,17 @@ class Seed:
         self.type = None
         self.mapping = {
             "dest_type": None,
-            "mapping": {}
+            "mappings": []
         }
 
     def add_mapping(self, dest, source, rnge, src_type, dest_type):
-        dest = [(dest + x) for x in range(rnge)]
-        source = [(source + x) for x in range(rnge)]
         self.mapping['dest_type'] = dest_type
-        for s, d in zip(source, dest):
-            self.mapping['mapping'][s] = d
         self.type = src_type
+        self.mapping['mappings'].append({
+            "source": source,
+            "dest": dest,
+            "range": rnge
+        })
 
     def get_type(self):
         return self.type
@@ -24,10 +25,16 @@ class Seed:
         return self.mapping['dest_type']
 
     def map(self, num):
-        if num in self.mapping['mapping'].keys():
-            return self.mapping['mapping'][num]
-        else:
-            return num
+        print(self.mapping['mappings'])
+        curr_mapping = None
+        for mapping in self.mapping['mappings']:
+            if mapping['source'] <= num < mapping['source'] + mapping['range']:
+                curr_mapping = mapping
+                break
+        if curr_mapping:
+            diff = curr_mapping['dest'] - curr_mapping['source']
+            return num + diff
+        return num
 
     def __str__(self):
         return f"SEED {self.type} {self.mapping}"
