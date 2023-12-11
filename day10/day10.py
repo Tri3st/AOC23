@@ -11,10 +11,11 @@ datalines2 = """.....
 
 
 def part1():
-    pipe = PipeMap()
     # Your code for part 1 goes here
-    pass
-
+    pipe = PipeMap(len(datalines2), len(datalines2[0]))
+    pipe.add_lines(datalines2)
+    print(pipe)
+    pipe.get_start()
 
 def part2():
     # Your code for part 2 goes here
