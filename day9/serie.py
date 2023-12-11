@@ -1,6 +1,5 @@
 class Serie:
     def __init__(self, data):
-        print(data)
         self.serie = [int(x) for x in data.strip().split(" ")]
         self.length = len(self.serie)
 
@@ -26,8 +25,14 @@ class Serie:
     def return_last_two(self):
         return self.serie[-2], self.serie[-1]
 
+    def return_first(self):
+        return self.serie[0]
+
     def add_num(self, num):
         self.serie.append(num)
+
+    def add_num_front(self, num):
+        self.serie.insert(0, num)
 
     def __str__(self):
         return "   ".join([str(x) for x in self.serie])

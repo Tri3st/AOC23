@@ -13,16 +13,36 @@ class Series:
                 result = self.series[self.index].return_diffs()
                 self.series.append(Serie(result))
                 self.index += 1
-        print(self.series)
 
     def calc_next(self):
         i = len(self.series) - 1
         s = self.series[i]
-        for i in range(len(self.series) - 1, -1, -1):
-            print(self.series[i])
-            nums = self.series[i].return_last_two()
-            print(nums)
-            self.series[i].add_num(self.series[i].return_last() + (nums[1] - nums[0]))
+        s.add_num(0)
+        while True:
+            i -= 1
+            s = self.series[i]
+            s_current = self.series[i + 1]
+            s.add_num(s_current.return_last() + s.return_last())
+            if i == 0:
+                break
+
+    def calc_previous(self):
+        i = len(self.series) - 1
+        s = self.series[i]
+        s.add_num_front(0)
+        while True:
+            i -= 1
+            s = self.series[i]
+            s_current = self.series[i + 1]
+            s.add_num_front(s.return_first() - s_current.return_first())
+            if i == 0:
+                break
+
+    def get_solution(self):
+        return self.series[0].return_last()
+
+    def get_solution_part_2(self):
+        return self.series[0].return_first()
 
     def __str__(self):
         res = ""

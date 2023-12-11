@@ -10,13 +10,23 @@ datalines2 = """0 3 6 9 12 15
 
 def part1():
     # Your code for part 1 goes here
-    test = "1 3 6 10 15 21"
-    series = Series(test)
-    print(series)
-    series.calc_next()
-    print(series)
+    total = 0
+    for line in datalines:
+        series = Series(line)
+        print(series)
+        series.calc_next()
+        print(series)
+        total += series.get_solution()
+    print("Total : ", total)
 
 
 def part2():
     # Your code for part 2 goes here
-    pass
+    total = 0
+    for line in datalines:
+        series = Series(line)
+        print(series)
+        series.calc_previous()
+        print(series)
+        total += series.get_solution_part_2()
+    print("Total : ", total)
