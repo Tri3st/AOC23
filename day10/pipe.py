@@ -19,6 +19,9 @@ class Pipe:
     def get_value(self):
         return self.value
 
+    def mark_visited(self):
+        self.value = '#'
+
     def set_distance_to_start(self, distance):
         self.distance_to_start = distance
 

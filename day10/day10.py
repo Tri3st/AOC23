@@ -12,12 +12,13 @@ LJ.LJ""".split("\n")
 
 def part1():
     # Your code for part 1 goes here
-    pipe = PipeMap(len(datalines2), len(datalines2[0]))
-    pipe.add_lines(datalines2)
+    pipe = PipeMap(len(datalines), len(datalines[0]))
+    pipe.add_lines(datalines)
     print(pipe)
     pipe.get_start()
     print(pipe.start)
     pipe.walk()
+    print(pipe.print_map())
 
 
 def part2():
