@@ -33,7 +33,8 @@ class Hand:
             'primary': 0,
             'secondary': 0
         }
-        self.highest_card = ''
+        self.highest_card = None
+        self.second_card = None
         self.rank = 0
         for card in hand:
             self.cards.append(card)
@@ -43,6 +44,9 @@ class Hand:
     def highest_card_points(self):
         return self.CARDS[self.highest_card]
 
+    def second_card_points(self):
+        return self.CARDS[self.second_card]
+
     def calc_points(self):
         if self.is_five_of_a_kind():
             self.points['primary'] = self.RANKS['Five of a kind']
@@ -50,8 +54,14 @@ class Hand:
             self.points['primary'] = self.RANKS['Four of a Kind']
         elif self.is_full_house():
             self.points['primary'] = self.RANKS['Full House']
+            second = max([self.CARDS[y] for y in [x for x in self.cards if x != self.highest_card]])
+            print("second : ", second)
+            self.points['secondary'] = self.CARDS[self.get_card(second)]
         elif self.is_three_of_a_kind():
             self.points['primary'] = self.RANKS['Three of a Kind']
+            second = max([self.CARDS[y] for y in [x for x in self.cards if x != self.highest_card]])
+            print("second :  ", second)
+            self.points['secondary'] = self.CARDS[self.get_card(second)]
         elif self.is_two_pair():
             self.points['primary'] = self.RANKS['Two Pairs']
         elif self.is_one_pair():
@@ -107,9 +117,12 @@ class Hand:
             self.highest_card = max(k for k, v in count.items())
         return result
 
+    def get_card(self, points):
+        return [k for k, v in self.CARDS.items() if v == points][0]
+
     def __str__(self):
         result = f"Hand: "
         for card in self.cards:
             result += f"{card} "
-        result += f" bid : {self.bid} highest score : {self.points['primary']} ({self.highest_card_points()})\n"
+        result += f" bid : {self.bid} highest score : {self.points['primary']} {self.points['secondary']} ({self.highest_card_points()})\n"
         return result
