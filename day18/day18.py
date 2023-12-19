@@ -26,9 +26,7 @@ def part1():
         lagoon.add_operator(line)
     print(lagoon)
     print(lagoon.count())
-
-
-
+    print(lagoon)
 
 def part2():
     # Your code for part 2 goes here
