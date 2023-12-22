@@ -1,4 +1,5 @@
 from MyMods.ReadDataFile import read_data
+from day18.calc2 import Calc2
 from day18.lagoon import Lagoon
 
 datalines = read_data("day18/input_day18.txt")
@@ -21,13 +22,21 @@ U 2 (#7a21e3)""".split("\n")
     
 def part1():
     # Your code for part 1 goes here
-    lagoon = Lagoon()
-    for line in datalines2:
+    lagoon = Calc2()
+    for line in datalines:
         lagoon.add_operator(line)
-    print(lagoon)
-    print(lagoon.count())
-    print(lagoon)
+    print("area : ", lagoon.count_area())
+    print("inner boundry points : ", lagoon.calc_inner_boundry_points())
+    print("outer boundry points : ", lagoon.outer_boundry_points)
+    print("total : ", lagoon.total())
+
 
 def part2():
     # Your code for part 2 goes here
-    pass
+    lagoon = Calc2()
+    for line in datalines:
+        lagoon.add_operator(line, mode=1)
+    print("area : ", lagoon.count_area())
+    print("inner boundry points : ", lagoon.calc_inner_boundry_points())
+    print("outer boundry points : ", lagoon.outer_boundry_points)
+    print("total : ", lagoon.total())

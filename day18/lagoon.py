@@ -2,14 +2,17 @@ import re
 
 from MyMods.Matrix import Matrix
 from day18.dig import Dig
+from day18.vertices import Vertices
 
 
 class Lagoon(Matrix):
     def __init__(self):
-        super().__init__(100, 100)
+        super().__init__(1000, 1000)
         self.directions = {'U': (-1, 0), 'D': (1, 0), 'L': (0, -1), 'R': (0, 1)}
-        self.current_position = (50, 20)
+        self.current_position = (500, 200)
+        self.vertices = []
         self.add_lines2()
+        self.count()
 
     def add_lines2(self):
         for j in range(self.dimj):
@@ -26,6 +29,7 @@ class Lagoon(Matrix):
 
     def do_operation(self, direction, steps, color):
         j, i = self.current_position
+        end = None
         if direction == 'U':
             for x in range(1, steps + 1):
                 self.grid[j - x][i].add_color(color)
@@ -42,39 +46,12 @@ class Lagoon(Matrix):
             for x in range(1, steps + 1):
                 self.grid[j][i + x].add_color(color)
             self.current_position = (j, i + steps)
-
-    def not_the_last_one(self, j, i):
-        for x in range(i + 1, self.dimi):
-            if self.grid[j][x].value == '#':
-                return True
-        return False
+        v = Vertices((j, i), self.current_position, steps, direction, color)
+        print("vertice : ", v.start, v.end, v.shoelace)
+        self.vertices.append(v)
 
     def count(self):
-        count = 0
-        inside = False
-        for j in range(self.dimj):
-            for i in range(self.dimi):
-                # count the #'s in a row
-                if self.grid[j][i].value == '#':
-                    if self.grid[j][i+1] == '#':
-                        c = 0
-                        while True:
-                            if self.grid[j][i + c].value == '#':
-                                count += 1
-                                c += 1
-                            else:
-                                i = i + c
-                                break
-                    # count all spaces until the next one, but NOT if it is the last one
-                    elif self.not_the_last_one(j, i):
-                        # count all spaces till next one
-                        d = 0
-                        while True:
-                            if self.grid[j][i + d].value == '.':
-                                self.grid[j][i + d].value = 'x'
-                                count += 1
-                                d += 1
-                            else:
-                                i = i + d
-                                break
-        return count
+        my_sum = 0
+        for v in self.vertices:
+            my_sum += v.shoelace
+        return my_sum / 2
