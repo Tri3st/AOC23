@@ -2,25 +2,34 @@ from MyMods.Matrix import Matrix
 
 
 class Garden(Matrix):
-    def __init__(self, dimj, dimi):
+    def __init__(self, dimj, dimi, lines):
         super().__init__(dimj, dimi, base=".")
-        self.start = self.find_start()
+        self.start = None
         self.next_step = None
         self.steps = 0
+        self.add_lines(lines)
+        self.start = self.find_start()
+
+
+    def step(self):
         while True:
             neighbors = None
             self.next_step = self.find_poss_neigbors(self.start[0], self.start[1])
             for n in self.next_step:
-                neighbors = self.find_poss_neigbors(n[0], n[1])
+                neighbors.append(self.find_poss_neigbors(n[0], n[1]))
+                neighbors.remove(n)
                 self.steps += 1
                 if neighbors:
                     pass
+                else:
+                    break
 
     def find_start(self):
         for j in range(self.dimj):
             for i in range(self.dimi):
                 if self.grid[j][i] == "S":
-                    return j, i
+                    print("Start found at", j, i)
+                    return (j, i)
         return None
 
     def find_poss_neigbors(self, j, i):
