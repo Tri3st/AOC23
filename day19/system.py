@@ -28,6 +28,13 @@ class System:
                 break
             else:
                 start = [rule for rule in self.rules if rule.name == temp][0]
+                print("start : ", start)
+
+    def get_sum(self):
+        my_sum = 0
+        for acc in self.accepted:
+            my_sum += self.workflows[acc].get_sum_workflow()
+        return my_sum
 
     def __str__(self):
         rules = ""

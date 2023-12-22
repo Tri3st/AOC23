@@ -30,7 +30,7 @@ class Instruction:
         return self.result
 
     def is_end(self):
-        return self.ACCEPTED or self.REJECTED
+        return (self.ACCEPTED or self.REJECTED) and self.operator is None
 
     def __str__(self):
         res = ""

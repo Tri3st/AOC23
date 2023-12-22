@@ -23,19 +23,21 @@ class Rule:
         self.name = matches[0][0]
         self.instructions = []
         for instr in matches[0][1].split(","):
-            print("instr : ", instr)
             self.instructions.append(Instruction(instr))
 
     def get_result(self, workflow: Workflow):
         result = None
         for inst in self.instructions:
             if inst.is_end():
+                print("IS END!")
                 return inst.get_result()
             elif inst.operator:
                 if inst.operator == ">":
                     if workflow.get_value(inst.part) > inst.second_part:
+                        print(workflow.get_value(inst.part), ">", inst.second_part)
                         return inst.get_result()
                 elif inst.operator == "<":
+                    print(workflow.get_value(inst.part), "<", inst.second_part)
                     if workflow.get_value(inst.part) < inst.second_part:
                         return inst.get_result()
             else:

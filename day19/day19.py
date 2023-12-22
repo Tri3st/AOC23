@@ -2,7 +2,7 @@ from MyMods.ReadDataFile import read_data
 from day19.system import System
 from day19.workflow import Workflow
 
-datalines = read_data("day19/input_day19.txt")
+datalines = read_data("day19/input_day19.txt", mode=1)
 
 datalines2 = """px{a<2006:qkq,m>2090:A,rfg}
 pv{a>1716:R,A}
@@ -25,14 +25,22 @@ hdj{m>838:A,pv}
 
 def part1():
     # Your code for part 1 goes here
-    system = System(datalines2)
-    print(system)
-    system.walk(0)
-    system.walk(1)
-    system.walk(2)
-    system.walk(3)
-    system.walk(4)
+    # system = System(datalines2)
+    # print(system)
+    # system.walk(0)
+    # system.walk(1)
+    # system.walk(2)
+    # system.walk(3)
+    # system.walk(4)
+    # print(system.accepted)
+    # print(system.get_sum())
+    #
+    # Big One:
+    system = System(datalines)
+    for i in range(len(system.workflows)):
+        system.walk(i)
     print(system.accepted)
+    print(system.get_sum())
 
 def part2():
     # Your code for part 2 goes here

@@ -18,6 +18,9 @@ class Workflow:
     def get_value(self, part: str) -> int:
         return self.workflow.get(part)
 
+    def get_sum_workflow(self):
+        return sum(self.workflow.values())
+
     def __str__(self):
         return f"Workflow: x: {self.workflow['x']} m: {self.workflow['m']} a: {self.workflow['a']} s: {self.workflow['s']}"
 
